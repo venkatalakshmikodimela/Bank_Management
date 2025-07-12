@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<center>
+		<h1>All student Details</h1>	
+		<form action="filterstudentdata">
+		<input placeholder="Search By Using Name Or Emailid Or Mobilenumber Or Gender" name=filterdata>
+		<input type="submit" value="SEARCH">
+		</form>
+	<table border="1px solid black">
+	<tr>
+	   <th>Name</th>
+	   <th>Emailid</th>
+	   <th>MobileNumber</th>
+	   <th>Gender</th>
+	</tr>
+	<tr th:each="student:${studentdetails}">
+	<td th:text="${student.name}"></td>
+	<td th:text="${student.emailid}"></td>
+	<td th:text="${student.mobilenumber}"></td>
+	<td th:text="${student.gender}"></td>
+	
+	<td>
+	<form>
+	<input th:value = "${student.mobilenumber}" hidden="true">
+	<input type="submit" value="Update">
+	</form>
+	</td>
+	
+	<td>
+	<form action=deletestudentdetails>
+	<input th:value = "${student.mobilenumber}" hidden="true" name="mobilenumber">
+	<input type="submit" value="Delete">
+	</form>
+	<tr th:each="student:${filterdata}">
+	<td th:text="${student.name}"></td>
+	<td th:text="${student.emailid}"></td>
+	<td th:text="${student.mobilenumber}"></td>
+	<td th:text="${student.gender}"></td>
+	</td>
+	</tr>
+	</table>
+	</center>
+</body>
+</html>
